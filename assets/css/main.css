@@ -475,31 +475,28 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Global Footer
+# Footer
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
   font-size: 14px;
-  position: relative;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 
-.footer .footer-top {
-  background-color: color-mix(in srgb, var(--background-color), white 5%);
-  padding-top: 50px;
+.footer-top {
+  padding-bottom: 30px;
 }
 
-.footer .footer-about .logo {
+/* Footer About */
+.footer-about .logo {
   line-height: 1;
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
-.footer .footer-about .logo img {
-  max-height: 40px;
-  margin-right: 6px;
-}
-
-.footer .footer-about .logo span {
+.footer-about .logo span {
   color: var(--heading-color);
   font-family: var(--heading-font);
   font-size: 26px;
@@ -507,17 +504,17 @@ h6 {
   letter-spacing: 1px;
 }
 
-.footer .footer-about p {
+.footer-about .footer-contact p {
   font-size: 14px;
-  font-family: var(--heading-font);
+  margin: 2px 0; /* tighter spacing */
 }
 
+/* Footer Links */
 .footer h4 {
   font-size: 16px;
   font-weight: 600;
+  margin: 15px 0 10px 0;
   position: relative;
-  padding-bottom: 12px;
-  margin-bottom: 15px;
 }
 
 .footer h4::after {
@@ -527,82 +524,57 @@ h6 {
   width: 20px;
   height: 2px;
   background: var(--accent-color);
-  bottom: 0;
-  left: 0;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.footer .footer-links {
-  margin-bottom: 30px;
+.footer-links {
+  margin-top: 20px; /* more space between contacts and links */
+  margin-bottom: 10px; /* less space to copyright */
 }
 
-.footer .footer-links ul {
+.footer-links ul.footer-nav {
   list-style: none;
   padding: 0;
-  margin: 0;
-}
-
-.footer .footer-links ul i {
-  padding-right: 2px;
-  font-size: 12px;
-  line-height: 0;
-}
-
-.footer .footer-links ul li {
-  padding: 10px 0;
+  margin: 10px 0 0 0;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.footer .footer-links ul li:first-child {
-  padding-top: 0;
+.footer-links ul.footer-nav li {
+  padding: 0;
 }
 
-.footer .footer-links ul a {
+.footer-links ul.footer-nav a {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
-  display: inline-block;
-  line-height: 1;
-}
-
-.footer .footer-links ul a:hover {
-  color: var(--accent-color);
-}
-
-.footer .footer-contact p {
-  margin-bottom: 5px;
-}
-
-.footer .copyright {
-  padding: 30px 0;
-}
-
-.footer .copyright p {
-  margin-bottom: 0;
-}
-
-.footer .credits {
-  margin-top: 5px;
-  font-size: 13px;
-}
-
-.footer .social-links a {
-  font-size: 18px;
-  display: inline-block;
-  background: color-mix(in srgb, var(--default-color), transparent 92%);
-  color: var(--accent-color);
-  line-height: 1;
-  padding: 8px 0;
-  margin-right: 4px;
-  border-radius: 4px;
-  text-align: center;
-  width: 36px;
-  height: 36px;
+  font-weight: 500;
   transition: 0.3s;
 }
 
-.footer .social-links a:hover {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  text-decoration: none;
+.footer-links ul.footer-nav a:hover,
+.footer-links ul.footer-nav a.active {
+  color: var(--accent-color);
+}
+
+/* Separator Line */
+.footer-separator {
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+  margin: 20px auto 10px auto;
+  width: 50%;
+}
+
+/* Copyright */
+.footer .copyright {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.footer .credits {
+  margin-top: 3px;
+  font-size: 12px;
 }
 
 /*--------------------------------------------------------------
@@ -819,7 +791,7 @@ section,
 
 .hero .btn-get-started:hover {
   color: var(--contrast-color);
-  background: color-mix(in srgb, var(--accent-hover), transparent 25%);
+  background: color-mix(in srgb, var(--accent-hover), transparent 0%);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
@@ -875,6 +847,8 @@ section,
   align-items: center;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;   /* optional, gives soft corners */
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1); /* subtle pop-up feel */
 }
 
 .about .content h3 {
@@ -1139,9 +1113,15 @@ section,
   padding: 120px 0;
   position: relative;
   clip-path: inset(0);
+   background-image:
+    linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)),
+    url('assets/img/bg-trust.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.trusted-companies img {
+.trusted-companies img{
   position: fixed;
   top: 0;
   left: 0;
@@ -1167,61 +1147,83 @@ section,
 
 /* Center-align the title */
 .trusted-companies h3 {
-  color: var(--default-color);
-  font-size: 28px;
+  color: var(--heading-color);
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 40px;
   text-align: center;
 }
 
-/* Logos row styling */
+/* Logos row: center everything and allow logos to grow */
 .trusted-companies .logos-row {
-  gap: 40px; /* space between logos */
+  display: flex;
+  justify-content: center; /* center logos horizontally */
+  align-items: center;     /* align logos vertically */
+  gap: 80px;               /* spacing between logos */
+  flex-wrap: wrap;          /* wrap on smaller screens */
+  margin-bottom: 40px;      /* space below logos */
 }
 
-.trusted-companies .logo-container {
-  position: relative;
-  z-index: 4; /* above the overlay */
+/* Each logo container */
+.trusted-companies .logos-row > div {
+  flex: 0 1 250px; /* allow logos to grow up to 250px */
+  text-align: center;
 }
 
-.company-logo {
-  max-height: 60px; /* adjust as needed */
+/* Logo images themselves */
+.trusted-companies .company-logo {
+  max-width: 260px;     /* adjust to make them bigger */
   object-fit: contain;
-  filter: brightness(0) invert(0.8); /* optional: make logos white-ish if needed */
   transition: filter 0.3s ease;
   display: inline-block !important;
-  width: 150px !important;
+  width: auto !important;
   height: auto !important;
   opacity: 1 !important;
   visibility: visible !important;
   position: static !important;
-  max-width: 100%;
 }
 
-.company-logo:hover {
-  filter: brightness(1) invert(0.1);
+.trusted-companies .company-logo:hover {
+  transform: scale(1.05); /* subtle zoom on hover */
 }
-
-/* Button styling */
+/* Make Trusted Companies button identical to About section button */
 .trusted-companies .cta-btn {
-  font-family: var(--heading-font);
-  font-weight: 500;
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  line-height: 0;
+  padding: 25px 25px;
+  border-radius: 4px;
+  transition: 0.5s;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1);
+  font-family: var(--default-font);
+  font-weight: 600;
   font-size: 16px;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 12px 40px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin: 10px;
-  color: var(--contrast-color);
-  background: var(--accent-color);
+  text-decoration: none;
   border: none;
   cursor: pointer;
-  text-decoration: none;
+}
+
+.trusted-companies .cta-btn span {
+  font-family: var(--default-font);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.trusted-companies .cta-btn i {
+  margin-left: 5px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.trusted-companies .cta-btn:hover i {
+  transform: translateX(5px);
 }
 
 .trusted-companies .cta-btn:hover {
-  background: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
 /*--------------------------------------------------------------
@@ -1229,21 +1231,32 @@ section,
 --------------------------------------------------------------*/
 .team .member {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  justify-content: center; /* center vertically if no image */
+  margin-bottom: 100px;
 }
 
 .team .member .pic {
+  width: 100%;
+  max-width: 450px; /* optional: keeps photo from getting too wide */
   overflow: hidden;
-  margin-bottom: 50px;
 }
 
 .team .member .member-info {
   background-color: var(--surface-color);
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  bottom: -50px;
-  left: 20px;
-  right: 20px;
+
+ position: absolute;   /* overlay again */
+  bottom: -50px;            /* stick to bottom of pic */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%); /* perfect centering */
+
+  width: calc(100% - 40px);  /* keeps a nice inset from edges */
+  max-width: 400px;
+
   padding: 20px 15px;
   overflow: hidden;
   transition: 0.5s;
@@ -1294,6 +1307,71 @@ section,
   margin: 0 2px;
 }
 
+/*--------------------------------------------------------------
+# Booking Section
+--------------------------------------------------------------*/
+.booking {
+  margin-top: 40px; /* adds spacing above this section */
+}
+.booking .booking-content {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
+  padding: 40px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Titles on the right column */
+.booking .booking-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.booking .booking-subtitle {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--default-color);
+  margin-bottom: 12px;
+}
+
+/* Body copy */
+.booking .booking-content p {
+  margin: 15px 0 20px 0;
+  line-height: 1.6;
+  font-size: 18px;
+  max-width: 900px;
+}
+
+/* Bullets with icons */
+.booking .booking-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.booking .booking-bullets li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.booking .booking-bullets i {
+  font-size: 18px;
+  color: var(--accent-color);
+  margin-top: 2px;
+}
+
+/* Calendly height on smaller screens */
+@media (max-width: 991px) {
+  .calendly-inline-widget { height: 900px !important; }
+}
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
@@ -1362,6 +1440,23 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+/* Form Success & Error Messages */
+.contact .php-email-form .form-message {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
+  display: none; /* stays hidden until JS updates it */
+}
+
+.contact .php-email-form .form-message.success {
+  color: green;
+}
+
+.contact .php-email-form .form-message.error {
+  color: red;
 }
 
 /*--------------------------------------------------------------
